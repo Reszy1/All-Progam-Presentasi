@@ -1,0 +1,35 @@
+def binary_search(arr, target)
+    low = 0
+    high = arr.length - 1
+
+    while low <= high
+        mid = low + (high - low) / 2
+
+        if arr[mid] == target
+            return mid # Mengembalikan indeks jika nilai ditemukan
+        elsif arr[mid] < target
+            low = mid + 1
+        else
+            high = mid - 1
+        end
+    end
+
+    return -1 # Mengembalikan -1 jika nilai tidak ditemukan
+end
+
+puts "Masukkan nama: "
+name_input = gets.chomp
+names = name_input.split(" ")
+names.sort!
+puts "Daftar nama setelah diurutkan: #{names.join(" ")}"
+
+puts "Masukkan nama yang ingin dicari: "
+target_name = gets.chomp
+
+result_index = binary_search(names, target_name)
+
+if result_index != -1
+    puts "Nama #{target_name} ditemukan di indeks ke-#{result_index} setelah diurutkan."
+else
+    puts "Nama #{target_name} tidak ditemukan."
+end

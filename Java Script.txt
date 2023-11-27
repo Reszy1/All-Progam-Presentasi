@@ -1,0 +1,38 @@
+function binarySearch(arr, target) {
+    let low = 0;
+    let high = arr.length - 1;
+    while (low <= high) {
+        let mid = Math.floor((low + high) / 2);
+        if (arr[mid] === target) {
+            return mid + 1;
+        } else if (arr[mid] < target) {
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
+    }
+    return -1;
+}
+
+const readline = require('readline');
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+rl.question("Masukkan nama: ", function(nameInput) {
+    let names = nameInput.split(" ");
+    names.sort();
+    console.log("Daftar nama setelah diurutkan:", names.join(" "));
+
+    rl.question("Masukkan nama yang ingin dicari: ", function(targetName) {
+        let result = binarySearch(names, targetName);
+
+        if (result !== -1) {
+            console.log(`Nama ${targetName} ditemukan di indeks ke-${result} setelah diurutkan.`);
+        } else {
+            console.log(`Nama ${targetName} tidak ditemukan.`);
+        }
+        rl.close();
+    });
+});

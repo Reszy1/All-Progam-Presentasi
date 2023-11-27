@@ -1,0 +1,31 @@
+def binary_search(arr, target):
+    low = 0
+    high = len(arr) - 1
+    while low <= high:
+        mid = (low + high) // 2
+        if arr[mid] == target:
+            return mid +1
+        elif arr[mid] < target:
+            low = mid + 1
+        else:
+            high = mid - 1
+    return -1
+
+#Meminta input nama dari pengguna
+name_input = input("Masukkan nama: ")
+names = name_input.split()
+
+#Mengurutkan daftar nama
+sorted_names = sorted(names)
+print("Daftar nama setelah diurutkan:", sorted_names)
+
+# Meminta input nama yang ingin dicari
+target_name = input("Masukkan nama yang ingin dicari: ")
+
+# Melakukan pencarian nama menggunakan binary search
+result = binary_search(sorted_names, target_name)
+
+if result != -1:
+    print(f"Nama {target_name} ditemukan di indeks ke-{result} setelah diurutkan.")
+else:
+    print(f"Nama {target_name} tidak ditemukan.")
